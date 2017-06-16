@@ -465,58 +465,17 @@
 
       
         
-          
-            <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
+          <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
 </blockquote>
 <h2 id="box-shadow"><em>box-shadow</em></h2>
 <p>用来设置对象阴影。</p>
-<ul>
-<li>
-<p><strong>none</strong>:无阴影</p>
-</li>
-<li>
-<p><strong>length-1</strong>:第1个长度值用来设置对象的阴影<strong>水平偏移值</strong>。可以为负值</p>
-</li>
-<li>
-<p><strong>length-2</strong>:第2个长度值用来设置对象的阴影<strong>垂直偏移值</strong>。可以为负值</p>
-</li>
-<li>
-<p><strong>length-3</strong>:如果提供了第3个长度值则用来设置对象的<strong>阴影模糊值</strong>。不允许负值</p>
-</li>
-<li>
-<p><strong>length-4</strong>:如果提供了第4个长度值则用来设置对象的<strong>阴影外延值</strong>。可以为负值</p>
-</li>
-<li>
-<p><strong>color</strong>:设置对象的阴影的颜色。</p>
-</li>
-<li>
-<p><strong>inset</strong>:设置对象的阴影类型为内阴影。该值为空时，则对象的阴影类型为外阴影。</p>
-</li>
-</ul>
-<p><strong>特殊用法</strong></p>
-<p>当偏移值都为0，模糊值也为0，一个正的外延值(length-4)，得到的投影就像一道实线边框。如：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attribute">background</span>: yellowgreen;</div><div class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#655</span>,</div><div class="line">              <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">20px</span> pink,</div><div class="line">              <span class="number">0</span> <span class="number">2px</span> <span class="number">5px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.6);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/multiple-borders1.png" alt=""><br>
-<strong>注意</strong></p>
-<ol>
-<li>支持逗号分隔语法，可以创建任意数量的投影。</li>
-<li><code>box-shadow</code>是层层叠加的，第一层位于最顶部，因此后面的半径要大于前面的半径。</li>
-</ol>
-<h2 id="outline"><em>outline</em></h2>
-<p>如果我们只需要两层边框，那么我们可以先设置常规的边框，然后用<code>outline</code>设置外层的边框。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attribute">background</span>: yellowgreen;</div><div class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#655</span>;</div><div class="line">  <span class="attribute">outline</span>: <span class="number">10px</span> solid pink;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/multiple-borders2.png" alt=""></p>
-<p><strong>注意</strong>：<code>outline</code>还可以产生虚线边框。<code>outline-offset</code>可以控制边框与元素边缘之间的间距，可以接受负值。如下图的<strong>简单缝边效果</strong>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attribute">background</span>: <span class="number">#655</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">outline</span>: <span class="number">2px</span> dashed white;</div><div class="line">  <span class="attribute">outline-offset</span>: -<span class="number">14px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/multiple-borders3.png" alt=""><br>
-<strong>注意</strong>：</p>
-<ol>
-<li><code>outline</code>只适用于双层边框。</li>
-<li>边框不贴合<code>border-radius</code>所产生的圆角。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/multiple-borders4.png" alt=""></li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/25/multiple-borders/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -631,30 +590,17 @@
 
       
         
-          
-            <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
+          <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
 </blockquote>
-<h2 id="hsla">HSLA</h2>
-<ul>
-<li>H：色调。0(或360)为红色，120为绿色，240为蓝色。</li>
-<li>S：饱和度。取值：0.0% ~ 100%</li>
-<li>L：亮度。取值：0.0% ~ 100%</li>
-<li>A：透明度。取值0~1</li>
-</ul>
 <h2 id="目的">目的</h2>
 <p>我们想要给容器设置一个半透明的边框，能够让<code>body</code>的背景从半透明边框中透上来。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>();</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line"><span class="attribute">border</span>: <span class="number">10px</span> solid <span class="built_in">hsla</span>(0,0%,100%,.5);</div><div class="line"><span class="attribute">background</span>: white;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>但是我们会发现容器的背景会延伸到边框所在的区域。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/translucent-border1.png" alt=""></p>
-<p>把边框设置为虚线，容器背景设置为其他颜色，可以看出背景确实延伸到了边框的区域。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/translucent-border2.png" alt=""></p>
-<h2 id="background-clip"><em>background-clip</em></h2>
-<p>这个属性的值默认为<code>border-box</code>,是指从<code>border</code>区域开始向外裁剪背景。</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">background</span>-clip: padding-<span class="built_in">box</span>;</div></pre></td></tr></table></figure>
-<p>我们把值设置为<code>padding-box</code>，这样就从<code>padding</code>区域开始向外裁剪背景。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/translucent-border3.png" alt=""></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/25/translucent-borders/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1042,67 +988,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>在网上看了非常多的优秀教程，但是我还是花了2天时间才搞出来自己的博客，可能是我太笨😂,因此<br>
 还是写下自己搭建博客的过程，权当为自己的博客剪个彩。</p>
 </blockquote>
-<h2 id="一-配置环境">一、配置环境</h2>
-<ol>
-<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></li>
-<li>安装Git，推荐<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰老师的教程</a>，非常简单。</li>
-</ol>
-<p><strong>注意：Node.js默认安装路径</strong></p>
-<p>其实，这里就遇到了第一个问题，<code>Command Line Tools</code>的安装。新版的Xcode&gt;Preference里并没有Downloads。</p>
-<p>正确的安装姿势：打开Mac终端,在终端中输入<code>xcode-select --install</code>，就可以安装了。<code>Command Line Tools</code>安装完成后，还要在终端中进行如下配置。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">"Your Name"</span></div><div class="line">$ git config --global user<span class="selector-class">.email</span> <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure>
-<h2 id="二-配置github">二、配置Github</h2>
-<ol>
-<li>首先你要有<a href="https://github.com/" target="_blank" rel="external">GitHub</a>账号。</li>
-<li>新建一个仓库，名字必须为<code>username.github.io</code>，username是你的用户名。</li>
-</ol>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/1.png" alt=""></p>
-<h2 id="三-安装hexo">三、安装Hexo</h2>
-<ol>
-<li>在电脑中新建一个文件夹，命名为Hexo。</li>
-<li>在Hexo文件夹上双击&gt;选择服务&gt;新建位于文件夹位置的终端窗口</li>
-<li>安装Hexo</li>
-</ol>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> -g hexo</div></pre></td></tr></table></figure>
-<ol start="4">
-<li>初始化Hexo</li>
-</ol>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo init</span></div></pre></td></tr></table></figure>
-<ol start="5">
-<li>安装成功后Hexo文件夹内会出现相应的文件，也可以在终端中输入<code>hexo -v</code>来查询是否安装成功。</li>
-</ol>
-<p><strong>注意：关于如何在Hexo文件夹中打开Git Bash</strong><br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/2.png" alt=""></p>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/3.png" alt=""></p>
-<h2 id="四-连接hexo和github">四、连接Hexo和GitHub</h2>
-<p>我们要安装一个扩展，来连接Hexo和GitHub，将本地的博客推送到GitHub。</p>
-<p>在Hexo文件夹上打开Git Bash，输入</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-deployer-git –<span class="keyword">save</span></div></pre></td></tr></table></figure>
-<p>安装完成后，我们打开Hexo文件夹，打开名为<code>_config.yml</code>的文件，找到<code>deploy</code>这一项，按如下方式配置。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/4.png" alt=""></p>
-<h2 id="五-部署本地博客到github">五、部署本地博客到GitHub</h2>
-<p>打开终端，输入以下命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
-<p>这样，在浏览器中输入<code>username.github.io</code>就能访问个人博客了。</p>
-<p>如果想要写一篇新的博客，就在Hexo&gt;source&gt;_posts里新建markdown文件，写自己的博客就好了。</p>
-<p>我们会发现，Hexo默认的主题是<code>landscape</code>，Hexo还有很多好看的主题，我们可以更换。按照GitHub上作者的安装方法将主题安装好后，我们会发现远程网站并没有更新。</p>
-<p>在Hexo文件夹打开Git Bash，输入下面的代码就可以更新了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
-<h2 id="六-其他">六、其他</h2>
-<ul>
-<li>GitHub推出了一款Markdown编辑器叫<a href="https://atom.io/" target="_blank" rel="external">Atom</a>，用着还挺不错的。</li>
-<li>写Markdown时，图片建议存储在<a href="https://developer.qiniu.com/" target="_blank" rel="external">七牛</a>。</li>
-<li>Markdown对emoji友好，写法参考<a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/" target="_blank" rel="external">emoji-cheat-sheet</a>😏。</li>
-<li>发布后无法显示emoji表情，参考这篇<a href="http://very9s.net/post/hexo-support-emoji/" target="_blank" rel="external">教程</a>。</li>
-<li>感谢这篇<a href="http://penghesheng.com/2017/03/03/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">教程</a>，给了我莫大的启发。</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/28/using hexo+github to construct my blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
