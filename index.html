@@ -5,17 +5,11 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
 
 
 
@@ -54,17 +48,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -74,7 +86,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -86,7 +98,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -106,7 +118,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -132,7 +144,11 @@
 
 
 
-  <title>Yuchen's Blog</title>
+  <title> Yuchen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
 
 
@@ -147,17 +163,13 @@
 
 
 
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container one-collumn sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -206,7 +218,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -216,7 +228,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -258,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -271,8 +283,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/06/07/Go2Shell/" itemprop="url">MAC必备神器——Go2Shell</a></h1>
+                <a class="post-title-link" href="/2017/06/07/Go2Shell/" itemprop="url">
+                  MAC必备神器——Go2Shell
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -313,6 +333,7 @@
       </header>
     
 
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -320,29 +341,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>每次想在某个目录下打开终端，我都会双击该文件夹&gt;选择服务&gt;新建位于该目录下的终端窗口，倍感繁琐，殊不知早已有了软件解决了这个痛点，就是神器——Go2Shell!</p>
 </blockquote>
-<h2 id="go2shell">Go2Shell</h2>
-<p>一个在当前目录下快速打开终端的工具。</p>
-<ul>
-<li>APP Store 里是老版本，已经不再升级</li>
-<li>新版本在官网下载，<a href="http://zipzapmac.com/go2shell" target="_blank" rel="external">地址</a></li>
-</ul>
-<h2 id="安装">安装</h2>
-<ol>
-<li>
-<p>下载完成后打开，点击最后<code>Install Go2Shell to Finder</code><br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/go2shell1.png" alt=""></p>
-</li>
-<li>
-<p>打开<code>Finder</code>，就可以发现<code>Go2Shell</code>的图标。</p>
-</li>
-</ol>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/go2shell2.png" alt=""></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/07/Go2Shell/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -355,9 +363,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -389,7 +394,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -402,8 +407,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/05/25/multiple-borders/" itemprop="url">多重边框</a></h1>
+                <a class="post-title-link" href="/2017/05/25/multiple-borders/" itemprop="url">
+                  多重边框
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -443,6 +456,7 @@
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -515,9 +529,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -549,7 +560,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -562,8 +573,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/05/25/translucent-borders/" itemprop="url">透明边框</a></h1>
+                <a class="post-title-link" href="/2017/05/25/translucent-borders/" itemprop="url">
+                  透明边框
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -603,6 +622,7 @@
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -647,9 +667,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -681,7 +698,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -694,8 +711,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/05/23/ES6/" itemprop="url">学习ES6新特性</a></h1>
+                <a class="post-title-link" href="/2017/05/23/ES6/" itemprop="url">
+                  学习ES6新特性
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -736,6 +761,7 @@
       </header>
     
 
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -761,9 +787,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -795,7 +818,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -808,8 +831,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/04/10/JavaScript Function/" itemprop="url">JavaScript中的函数</a></h1>
+                <a class="post-title-link" href="/2017/04/10/JavaScript Function/" itemprop="url">
+                  JavaScript中的函数
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -849,6 +880,7 @@
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -908,9 +940,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -942,7 +971,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -955,8 +984,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/03/28/using hexo+github to construct my blog/" itemprop="url">MAC版使用Hexo+GitHub搭建个人博客的真小白教程</a></h1>
+                <a class="post-title-link" href="/2017/03/28/using hexo+github to construct my blog/" itemprop="url">
+                  MAC版使用Hexo+GitHub搭建个人博客的真小白教程
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -996,6 +1033,7 @@
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1077,9 +1115,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -1111,7 +1146,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1124,8 +1159,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/03/28/test/" itemprop="url">Markdown语法</a></h1>
+                <a class="post-title-link" href="/2017/03/28/test/" itemprop="url">
+                  Markdown语法
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -1165,6 +1208,7 @@
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1240,9 +1284,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -1274,7 +1315,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1287,8 +1328,16 @@
         
         
           <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 
-                <a class="post-title-link" href="/2017/03/27/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2017/03/27/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -1329,6 +1378,7 @@
       </header>
     
 
+
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1365,9 +1415,6 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -1389,7 +1436,7 @@
 
   
 
-
+          
           </div>
           
 
@@ -1418,7 +1465,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="http://onk2gx4m2.bkt.clouddn.com/myimg.png"
                alt="Yuchen Yao" />
           <p class="site-author-name" itemprop="name">Yuchen Yao</p>
            
@@ -1426,10 +1473,10 @@
           
         </div>
         <nav class="site-state motion-element">
-
+        
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/archives">
                 <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -1439,10 +1486,8 @@
           
 
           
-            
-            
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/tags">
                 <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1455,12 +1500,46 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yuchenyao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2197138851" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
         </div>
 
         
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://guoyaoxd.github.io/" title="GuoYao" target="_blank">GuoYao</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         
@@ -1500,7 +1579,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
@@ -1517,7 +1596,7 @@
         
       </div>
     
-
+    
   </div>
 
   
@@ -1537,14 +1616,6 @@
 
 
   
-
-
-
-
-
-
-
-
 
 
 
@@ -1571,29 +1642,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
-
-  
-  
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
 
   
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
   
+
 
 
   
@@ -1623,15 +1691,7 @@
 
 
 
-
-
-
   
-
-
-
-
-
   
 
   
@@ -1641,6 +1701,7 @@
   
 
   
+
 
   
 

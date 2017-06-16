@@ -5,17 +5,11 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
 
 
 
@@ -54,17 +48,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -74,7 +86,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="JavaScript," />
@@ -86,7 +98,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -131,7 +143,7 @@ var addNumbers = function(x,y){return x+y;}
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -157,7 +169,11 @@ var addNumbers = function(x,y){return x+y;}
 
 
 
-  <title>JavaScript中的函数 | Yuchen's Blog</title>
+  <title> JavaScript中的函数 | Yuchen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
 
 
@@ -172,17 +188,13 @@ var addNumbers = function(x,y){return x+y;}
 
 
 
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -229,7 +241,7 @@ var addNumbers = function(x,y){return x+y;}
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -239,7 +251,7 @@ var addNumbers = function(x,y){return x+y;}
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -281,7 +293,7 @@ var addNumbers = function(x,y){return x+y;}
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -293,7 +305,14 @@ var addNumbers = function(x,y){return x+y;}
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中的函数</h1>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript中的函数
+              
+            
+          </h1>
         
 
         <div class="post-meta">
@@ -333,6 +352,7 @@ var addNumbers = function(x,y){return x+y;}
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -394,12 +414,6 @@ var addNumbers = function(x,y){return x+y;}
       
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
 
     <footer class="post-footer">
       
@@ -411,7 +425,7 @@ var addNumbers = function(x,y){return x+y;}
       
 
       
-      
+        
       
 
       
@@ -448,7 +462,7 @@ var addNumbers = function(x,y){return x+y;}
     </div>
   </div>
 
-
+          
           </div>
           
 
@@ -490,7 +504,7 @@ var addNumbers = function(x,y){return x+y;}
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="http://onk2gx4m2.bkt.clouddn.com/myimg.png"
                alt="Yuchen Yao" />
           <p class="site-author-name" itemprop="name">Yuchen Yao</p>
            
@@ -498,10 +512,10 @@ var addNumbers = function(x,y){return x+y;}
           
         </div>
         <nav class="site-state motion-element">
-
+        
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/archives">
                 <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -511,10 +525,8 @@ var addNumbers = function(x,y){return x+y;}
           
 
           
-            
-            
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/tags">
                 <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -527,12 +539,46 @@ var addNumbers = function(x,y){return x+y;}
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yuchenyao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2197138851" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
         </div>
 
         
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://guoyaoxd.github.io/" title="GuoYao" target="_blank">GuoYao</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         
@@ -588,7 +634,7 @@ var addNumbers = function(x,y){return x+y;}
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
@@ -605,7 +651,7 @@ var addNumbers = function(x,y){return x+y;}
         
       </div>
     
-
+    
   </div>
 
   
@@ -625,14 +671,6 @@ var addNumbers = function(x,y){return x+y;}
 
 
   
-
-
-
-
-
-
-
-
 
 
 
@@ -659,29 +697,30 @@ var addNumbers = function(x,y){return x+y;}
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
   
+  
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
 
 
   
@@ -711,15 +750,7 @@ var addNumbers = function(x,y){return x+y;}
 
 
 
-
-
-
   
-
-
-
-
-
   
 
   
@@ -729,6 +760,7 @@ var addNumbers = function(x,y){return x+y;}
   
 
   
+
 
   
 
