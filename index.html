@@ -835,45 +835,18 @@
 
       
         
-          
-            <ol>
+          <ol>
 <li>实际的函数代码被封装在一对花括号内{}。</li>
 <li>对函数而言，return语句是可选的。</li>
 <li>JavaScript函数总是会返回一个值。当function主体中没有return语句时，那么function返回undefined。</li>
 </ol>
-<h2 id="匿名函数">匿名函数</h2>
-<p>JavaScript函数可以匿名，但是函数必须存储在变量中。</p>
-<p><code>var addNumbers = function(x,y){return x+y;}</code></p>
-<p>上述也叫函数表达式，可以把<code>addNumbers</code>当做函数名，然后调用</p>
-<p><code>var sum = addNumbers(2,3);</code></p>
-<h4 id="传递一个函数作为参数给另一个函数">传递一个函数作为参数给另一个函数</h4>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = function(a,b)&#123;<span class="keyword">return</span> a+b;&#125;</div><div class="line"><span class="keyword">var</span> multiply = function(a,b)&#123;<span class="keyword">return</span> a*b;&#125;</div><div class="line"></div><div class="line">function calculate(<span class="function"><span class="keyword">fun</span>,c,d)&#123;</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="title">fun</span><span class="params">(c,d)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>创建了两个匿名函数，定义函数calculate，这个函数接受函数作为第一个参数，后面两个参数接受两个数字。<br>
-可以传递任意函数作为第一个参数来调用函数calculate。</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var sum =calculate(add,<span class="number">2</span>,<span class="number">3</span>); <span class="comment">// sum = 5</span></div><div class="line">var multiplication = calculate(multiply,<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//结果为6</span></div></pre></td></tr></table></figure>
-<p><strong>将函数作为参数传递很容易，这种模式在AJAX中大量使用。</strong></p>
-<h2 id="关于参数的更多内容">关于参数的更多内容</h2>
-<ul>
-<li><font color="#CC3333">缺少参数</font></li>
-</ul>
-<p>JavaScript函数可以传递任意的参数，多传或者少传，不传都可以。如果调用的函数的参数比声明的少，缺少的参数设置为undefined。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callMe</span>(<span class="params">a,b,c</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"c is "</span> + <span class="keyword">typeof</span> c);</div><div class="line">&#125;</div><div class="line"></div><div class="line">callMe(<span class="string">"code"</span>,<span class="string">"Morning"</span>);</div><div class="line"><span class="comment">//c is undefined</span></div><div class="line">callMe(<span class="string">"Learn"</span>,<span class="string">"JavaScript"</span>,<span class="string">"Function"</span>);</div><div class="line"><span class="comment">//c is string</span></div></pre></td></tr></table></figure>
-<ul>
-<li><font color="#CC3333">Arguments对象</font></li>
-</ul>
-<p>JavaScript函数有一个特殊的对象，arguments，在函数调用的过程中传递参数数组。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callMe</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> i;</div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; <span class="built_in">arguments</span>.length;i++)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[i]);</div><div class="line">        &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Total arguments passed: "</span> + <span class="built_in">arguments</span>.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">callMe</span>(<span class="string">"Code"</span>,<span class="string">"Morning"</span>,<span class="string">"Mr.Programmer"</span>);</div><div class="line"><span class="comment">//Code</span></div><div class="line"><span class="comment">//Morning</span></div><div class="line"><span class="comment">//Mr.Programmer</span></div><div class="line"><span class="comment">//Total arguments passed: 3</span></div></pre></td></tr></table></figure>
-<p>每个参数可以从arguments对象中作为一个数组项被访问。</p>
-<ul>
-<li><font color="#CC3333">默认参数</font></li>
-</ul>
-<p>ECMAScript 6规定了可以定义带有默认参数的函数。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">greetMyVisitors</span><span class="params">(name,profession=<span class="string">"The cool Programmer"</span>)</span></span>&#123;</div><div class="line">    alert(<span class="string">"Welcome Mr."</span> + name +<span class="string">","</span> + profession);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果在调用过程中没有参数传递(或是undefined)，则第二个参数取默认值。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">greetMyVisitors</span>(<span class="string">"Yuchen"</span>,<span class="string">"The student"</span>);</div><div class="line"><span class="comment">//Welcome Mr.Yuchen,The student</span></div><div class="line"><span class="selector-tag">greetMyVisitors</span>(<span class="string">"Bob Mars"</span>);</div><div class="line"><span class="comment">//Welcome Mr.Bob Mars,The cool Programmer</span></div><div class="line"><span class="selector-tag">greetMyVisitors</span>(<span class="string">"Bob Mars"</span>,undefined);</div><div class="line"><span class="comment">//Welcome Mr.Bob Mars,The cool Programmer</span></div></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/10/JavaScript Function/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1113,61 +1086,14 @@
 
       
         
-          
-            <h1>Markdown常用语法</h1>
-<h2 id="代码引用">代码引用</h2>
-<p><code>hello world</code></p>
-<h2 id="多段代码引用">多段代码引用</h2>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="无序列表">无序列表</h2>
-<ul>
-<li>厦门大学</li>
-<li>北京大学</li>
-<li>南京大学</li>
-</ul>
-<h2 id="有序列表">有序列表</h2>
-<ol>
-<li>厦门大学</li>
-<li>北京大学</li>
-<li>南京大学</li>
-</ol>
-<h2 id="链接和图片">链接和图片</h2>
-<p><a href="www.baidu.com">百度</a></p>
-<p><img src="" alt=""></p>
-<h2 id="引用">引用</h2>
-<blockquote>
-<p>两个黄鹂鸣翠柳，</p>
-</blockquote>
-<blockquote>
-<p>一行白鹭上青天。</p>
-</blockquote>
-<h2 id="粗体">粗体</h2>
-<p><strong>简书</strong></p>
-<p><em>简书</em></p>
-<h2 id="表格">表格</h2>
-<table>
-<thead>
-<tr>
-<th>dog</th>
-<th>cat</th>
-<th>bird</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>foo</td>
-<td>foo</td>
-<td>foo</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>bar</td>
-<td>bar</td>
-</tr>
-</tbody>
-</table>
-
-          
+          <h1>Markdown常用语法</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/28/test/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1282,23 +1208,14 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/27/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
