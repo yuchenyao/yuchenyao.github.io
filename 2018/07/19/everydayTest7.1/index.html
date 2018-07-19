@@ -106,27 +106,27 @@
 
 
 <meta name="description" content="Promise
-123456789Promise.resolve(1).then(	(res) =&amp;gt; &amp;#123;		console.log(res);		return 2;s&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
+123456789Promise.resolve(1).then((res) =&amp;gt; &amp;#123;	console.log(res);	return 2;&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
 答案：1 2
 
-如">
+如果调用r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日一测(二)">
 <meta property="og:url" content="http://yoursite.com/2018/07/19/everydayTest7.1/index.html">
 <meta property="og:site_name" content="Yuchen's Blog">
 <meta property="og:description" content="Promise
-123456789Promise.resolve(1).then(	(res) =&amp;gt; &amp;#123;		console.log(res);		return 2;s&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
+123456789Promise.resolve(1).then((res) =&amp;gt; &amp;#123;	console.log(res);	return 2;&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
 答案：1 2
 
-如">
-<meta property="og:updated_time" content="2018-07-19T02:43:01.000Z">
+如果调用r">
+<meta property="og:updated_time" content="2018-07-19T02:45:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一测(二)">
 <meta name="twitter:description" content="Promise
-123456789Promise.resolve(1).then(	(res) =&amp;gt; &amp;#123;		console.log(res);		return 2;s&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
+123456789Promise.resolve(1).then((res) =&amp;gt; &amp;#123;	console.log(res);	return 2;&amp;#125;).catch((err) =&amp;gt; &amp;#123;	return 3;&amp;#125;).then((res) =&amp;gt; &amp;#123;	console.log(res);&amp;#125;);
 答案：1 2
 
-如">
+如果调用r">
 
 
 
@@ -352,7 +352,7 @@
 
       
         <h2 id="promise">Promise</h2>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Promise.resolve(<span class="number">1</span>).<span class="keyword">then</span>(</div><div class="line">	<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</div><div class="line">		<span class="built_in">console</span>.log(res);</div><div class="line">		<span class="keyword">return</span> <span class="number">2</span>;s</div><div class="line">&#125;).<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">&#125;).<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(res);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Promise.resolve(<span class="number">1</span>)</div><div class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(res);</div><div class="line">	<span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">&#125;).<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">&#125;).<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(res);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>答案：<code>1 2</code></p>
 <ol>
 <li>如果调用resolve函数和reject函数时带有参数，那么这些参数会被传递给回调函数，因此首先打印1</li>
