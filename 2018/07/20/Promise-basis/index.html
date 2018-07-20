@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -105,12 +105,31 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuchen's Blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta name="description" content="此文为《深入理解ES6》摘抄笔记
+
+Promise 基础
+Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
+12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
+readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise(一)">
+<meta property="og:url" content="http://yoursite.com/2018/07/20/Promise-basis/index.html">
 <meta property="og:site_name" content="Yuchen's Blog">
+<meta property="og:description" content="此文为《深入理解ES6》摘抄笔记
+
+Promise 基础
+Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
+12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
+readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
+<meta property="og:updated_time" content="2018-07-20T02:23:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuchen's Blog">
+<meta name="twitter:title" content="Promise(一)">
+<meta name="twitter:description" content="此文为《深入理解ES6》摘抄笔记
+
+Promise 基础
+Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
+12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
+readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
 
 
 
@@ -138,13 +157,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/20/Promise-basis/"/>
 
 
 
 
 
-  <title> Yuchen's Blog </title>
+  <title> Promise(一) | Yuchen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -169,9 +188,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,9 +271,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -265,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/Promise-basis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
@@ -286,10 +303,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/28/test/" itemprop="url">
-                  Markdown语法
-                </a>
+                Promise(一)
               
             
           </h1>
@@ -304,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T19:27:58+08:00">
-                2017-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T09:30:12+08:00">
+                2018-07-20
               </time>
             
 
@@ -340,173 +354,91 @@
       
 
       
-        
-          <h1>Markdown常用语法</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/test/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <blockquote>
+<p>此文为《深入理解ES6》摘抄笔记</p>
+</blockquote>
+<h2 id="promise-基础">Promise 基础</h2>
+<p>Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// <span class="built_in">read</span>File 承诺在未来的某个时刻完成</div><div class="line"><span class="built_in">let</span> promise = <span class="built_in">read</span>File(<span class="string">"test.txt"</span>)</div></pre></td></tr></table></figure>
+<p><code>readFile()</code>不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对象，未来对这个对象的操作取决于Promise的<strong>生命周期</strong>。</p>
+<h3 id="promise-生命周期">Promise 生命周期</h3>
+<p>在上面的示例中，<code>readFile()</code>返回Promise对象时，它变为<strong>pending</strong>状态，操作结束后，Promise可能会进入以下两个状态之一：</p>
+<ul>
+<li><strong>Fulfilled</strong>  Promise异步操作成功完成</li>
+<li><strong>Rejected</strong> Promise异步操作未能成功完成</li>
+</ul>
+<h3 id="then-catch">then() &amp; catch()</h3>
+<p>所有Promise都有<code>then()</code>方法，它接受两个参数，一个是Promise状态变为<strong>fulfilled</strong>时调用的函数，一个是Promise状态变为<strong>rejected</strong>时调用的函数。</p>
+<p>Promise有一个<code>catch()</code>方法，相当于只传入拒绝处理程序的<code>then()</code>方法。</p>
+<h3 id="创建未完成的promise">创建未完成的Promise</h3>
+<p>Promise构造函数可以创建新的Promise，构造函数只接受一个参数：包含初始化Promise代码的执行器函数。</p>
+<p>执行器接受两个参数，分别是<code>resolve()</code>函数和<code>reject()</code>函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Promise'</span>);</div><div class="line">	resolve();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Resolved'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Hi'</span>);</div></pre></td></tr></table></figure>
+<p>输出为：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Promise</span></div><div class="line">Hi</div><div class="line">Resolved</div></pre></td></tr></table></figure>
+<p>Promise执行器会立即执行，所以首先打印Promise，虽然<code>then()</code>的调用位于<code>console.log('Hi');</code>之前，但是它并没有立即执行。因为完成处理程序的拒绝处理程序总是在执行器完成后被添加到任务队列的末尾。</p>
+<h3 id="创建已处理的promise">创建已处理的Promise</h3>
+
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuchen Yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuchen's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T17:43:49+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/27/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/everydayTest7-2/" rel="next" title="每日一测(三)">
+                <i class="fa fa-chevron-left"></i> 每日一测(三)
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -514,6 +446,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -533,8 +469,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://onk2gx4m2.bkt.clouddn.com/myimg.png"
@@ -605,6 +550,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#promise-基础"><span class="nav-number">1.</span> <span class="nav-text">Promise 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">Promise 生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#then-catch"><span class="nav-number">1.2.</span> <span class="nav-text">then() & catch()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建未完成的promise"><span class="nav-number">1.3.</span> <span class="nav-text">创建未完成的Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建已处理的promise"><span class="nav-number">1.4.</span> <span class="nav-text">创建已处理的Promise</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -710,6 +671,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
