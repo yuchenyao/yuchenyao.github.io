@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yuchen's Blog">
 <meta property="og:description" content="Promise
 123456789101112131415setTimeout(function ()&amp;#123;	console.log(1);&amp;#125;,0);new Promise (function executor (resolve) &amp;#123;	console.log(2);	for (var i = 0; i &amp;lt; 1000; i++) &amp;#123;		i = 9999 &amp;a">
-<meta property="og:updated_time" content="2018-07-19T12:15:51.000Z">
+<meta property="og:updated_time" content="2018-07-23T06:02:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一测(三)">
 <meta name="twitter:description" content="Promise
@@ -344,6 +344,28 @@
       
         <h2 id="promise">Promise</h2>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;,<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span> (<span class="function"><span class="keyword">function</span> <span class="title">executor</span> (<span class="params">resolve</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">		i = <span class="number">9999</span> &amp;&amp; resolve();</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">3</span>)</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">4</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>答案：<code>2 3 5 4 1</code></p>
+<ol>
+<li>首先执行script下的宏任务，遇到<code>setTimeout</code>，将其放到宏任务的【队列】中。</li>
+<li>遇到<code>new Promise</code>直接执行，打印2</li>
+<li>遇到<code>for</code>循环直接执行，遇到<code>then</code>方法是微任务，放到【队列】中</li>
+<li>打印3</li>
+<li>打印5</li>
+<li>本轮宏任务执行完成，查看本轮微任务，打印4</li>
+<li>到此，本轮的 event loop 全部完成</li>
+<li>下一轮中，执行一个宏任务，发现宏任务【队列】中有一个<code>setTimeout</code>函数，打印1</li>
+</ol>
+<h4 id="settimeout">setTimeout()</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	 <span class="built_in">console</span>.log(<span class="string">'执行了'</span>);</div><div class="line">&#125;, <span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>一般我们对这段代码的理解是，3秒后打印<code>执行了</code>，但是这种说法并不严谨。准确来说，是3秒后，会把<code>setTimeout()</code>里的函数推入event queue，而event queue中的任务，只有在主线程空闲时才会执行。</p>
+<p><strong>所以只有满足(1)3秒后(2)主线程空闲时，才会执行该函数。</strong></p>
+<p>如果主线程执行任务很多，执行时间超过了3秒，比如执行了10秒，那么这个函数只能10秒后执行。</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a></li>
+<li><a href="https://segmentfault.com/a/1190000012806637" target="_blank" rel="external">10分钟理解JS引擎的执行机制</a></li>
+</ul>
+
       
     </div>
 
@@ -529,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#promise"><span class="nav-number">1.</span> <span class="nav-text">Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#settimeout"><span class="nav-number">1.0.1.</span> <span class="nav-text">setTimeout()</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

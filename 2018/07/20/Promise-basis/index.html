@@ -105,31 +105,16 @@
 
 
 
-<meta name="description" content="此文为《深入理解ES6》摘抄笔记
-
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
-12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
-readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
+<meta name="description" content="此文为《深入理解ES6》摘抄笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise(一)">
 <meta property="og:url" content="http://yoursite.com/2018/07/20/Promise-basis/index.html">
 <meta property="og:site_name" content="Yuchen's Blog">
-<meta property="og:description" content="此文为《深入理解ES6》摘抄笔记
-
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
-12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
-readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
-<meta property="og:updated_time" content="2018-07-20T02:23:49.000Z">
+<meta property="og:description" content="此文为《深入理解ES6》摘抄笔记">
+<meta property="og:updated_time" content="2018-07-23T04:12:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise(一)">
-<meta name="twitter:description" content="此文为《深入理解ES6》摘抄笔记
-
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。
-12// readFile 承诺在未来的某个时刻完成let promise = readFile(&quot;test.txt&quot;)
-readFile()不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对">
+<meta name="twitter:description" content="此文为《深入理解ES6》摘抄笔记">
 
 
 
@@ -357,6 +342,7 @@ readFile()不会立即开始读取文件，函数会先返回一个表示异步�
         <blockquote>
 <p>此文为《深入理解ES6》摘抄笔记</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="promise-基础">Promise 基础</h2>
 <p>Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// <span class="built_in">read</span>File 承诺在未来的某个时刻完成</div><div class="line"><span class="built_in">let</span> promise = <span class="built_in">read</span>File(<span class="string">"test.txt"</span>)</div></pre></td></tr></table></figure>
