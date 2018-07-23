@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Yuchen's Blog">
 <meta property="og:description" content="Promise
 123456789101112131415setTimeout(function ()&amp;#123;	console.log(1);&amp;#125;,0);new Promise (function executor (resolve) &amp;#123;	console.log(2);	for (var i = 0; i &amp;lt; 1000; i++) &amp;#123;		i = 9999 &amp;a">
-<meta property="og:updated_time" content="2018-07-23T06:02:10.000Z">
+<meta property="og:updated_time" content="2018-07-23T06:09:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一测(三)">
 <meta name="twitter:description" content="Promise
@@ -344,6 +344,7 @@
       
         <h2 id="promise">Promise</h2>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;,<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="keyword">new</span> <span class="built_in">Promise</span> (<span class="function"><span class="keyword">function</span> <span class="title">executor</span> (<span class="params">resolve</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">		i = <span class="number">9999</span> &amp;&amp; resolve();</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">3</span>)</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">4</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>答案：<code>2 3 5 4 1</code></p>
 <ol>
 <li>首先执行script下的宏任务，遇到<code>setTimeout</code>，将其放到宏任务的【队列】中。</li>
