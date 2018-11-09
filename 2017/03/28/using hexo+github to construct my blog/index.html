@@ -114,10 +114,8 @@
 <meta property="og:description" content="在网上看了非常多的优秀教程，但是我还是花了2天时间才搞出来自己的博客，可能是我太笨😂,因此
 还是写下自己搭建博客的过程，权当为自己的博客剪个彩。">
 <meta property="og:image" content="https://blog-yuchen.oss-cn-shanghai.aliyuncs.com/repos.png?Expires=1541751602&OSSAccessKeyId=TMP.AQHp_3_sVjd7gPjLtP2I0678ytvfNQi3TF6XwkJIqlEzrdFvYtAfn9NtYjOJADAtAhUAvNujcCnKu146lw67oPlSHnH52UACFG_US4tle3CeBUFNx9fgBmlh-Sxk&Signature=GYsaMBrTngSJpYG7H9bCCAt1u7M%3D">
-<meta property="og:image" content="http://onk2gx4m2.bkt.clouddn.com/2.png">
-<meta property="og:image" content="http://onk2gx4m2.bkt.clouddn.com/3.png">
-<meta property="og:image" content="http://onk2gx4m2.bkt.clouddn.com/4.png">
-<meta property="og:updated_time" content="2018-11-09T07:22:22.000Z">
+<meta property="og:image" content="https://blog-yuchen.oss-cn-shanghai.aliyuncs.com/deploy.png?Expires=1541752170&OSSAccessKeyId=TMP.AQHp_3_sVjd7gPjLtP2I0678ytvfNQi3TF6XwkJIqlEzrdFvYtAfn9NtYjOJADAtAhUAvNujcCnKu146lw67oPlSHnH52UACFG_US4tle3CeBUFNx9fgBmlh-Sxk&Signature=1yg0kbCAmGkxErgxjJWmEINRWHA%3D">
+<meta property="og:updated_time" content="2018-11-09T07:34:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MAC版使用Hexo+GitHub搭建个人博客的真小白教程">
 <meta name="twitter:description" content="在网上看了非常多的优秀教程，但是我还是花了2天时间才搞出来自己的博客，可能是我太笨😂,因此
@@ -381,15 +379,12 @@
 <ol start="5">
 <li>安装成功后Hexo文件夹内会出现相应的文件，也可以在终端中输入<code>hexo -v</code>来查询是否安装成功。</li>
 </ol>
-<p><strong>注意：关于如何在Hexo文件夹中打开Git Bash</strong><br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/2.png" alt=""></p>
-<p><img src="http://onk2gx4m2.bkt.clouddn.com/3.png" alt=""></p>
 <h2 id="四-连接hexo和github">四、连接Hexo和GitHub</h2>
 <p>我们要安装一个扩展，来连接Hexo和GitHub，将本地的博客推送到GitHub。</p>
 <p>在Hexo文件夹上打开Git Bash，输入</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-deployer-git –<span class="keyword">save</span></div></pre></td></tr></table></figure>
 <p>安装完成后，我们打开Hexo文件夹，打开名为<code>_config.yml</code>的文件，找到<code>deploy</code>这一项，按如下方式配置。<br>
-<img src="http://onk2gx4m2.bkt.clouddn.com/4.png" alt=""></p>
+<img src="https://blog-yuchen.oss-cn-shanghai.aliyuncs.com/deploy.png?Expires=1541752170&amp;OSSAccessKeyId=TMP.AQHp_3_sVjd7gPjLtP2I0678ytvfNQi3TF6XwkJIqlEzrdFvYtAfn9NtYjOJADAtAhUAvNujcCnKu146lw67oPlSHnH52UACFG_US4tle3CeBUFNx9fgBmlh-Sxk&amp;Signature=1yg0kbCAmGkxErgxjJWmEINRWHA%3D" alt=""></p>
 <h2 id="五-部署本地博客到github">五、部署本地博客到GitHub</h2>
 <p>打开终端，输入以下命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g <span class="_">-d</span></div></pre></td></tr></table></figure>
@@ -401,7 +396,7 @@
 <h2 id="六-其他">六、其他</h2>
 <ul>
 <li>GitHub推出了一款Markdown编辑器叫<a href="https://atom.io/" target="_blank" rel="external">Atom</a>，用着还挺不错的。</li>
-<li>写Markdown时，图片建议存储在<a href="https://developer.qiniu.com/" target="_blank" rel="external">七牛</a>。</li>
+<li>之前博客的图片是存放在七牛的，不过现在七牛测试域名只有30天的有效期，所以还是在阿里云买了oss，一年才9块。</li>
 <li>Markdown对emoji友好，写法参考<a href="https://www.webpagefx.com/tools/emoji-cheat-sheet/" target="_blank" rel="external">emoji-cheat-sheet</a>😏。</li>
 <li>发布后无法显示emoji表情，参考这篇<a href="http://very9s.net/post/hexo-support-emoji/" target="_blank" rel="external">教程</a>。</li>
 <li>感谢这篇<a href="http://penghesheng.com/2017/03/03/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">教程</a>，给了我莫大的启发。</li>
