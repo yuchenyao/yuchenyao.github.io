@@ -1,0 +1,774 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="FETP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="文本为翻译计划的第一篇文章，原文地址
+
+ES2019最近已完成制定，这意味着JavaScript将有很多新特性供大家学习。这些特性目前可以在Chrome 73中使用。
+
+Array#{flat, flatMap}
+Object.fromEntries
+String#{trimStart, trimEnd}
+Symbol#description
+try {} catch {} optional b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES2019中的新特性">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/newFeatureInES/index.html">
+<meta property="og:site_name" content="Yuchen's Blog">
+<meta property="og:description" content="文本为翻译计划的第一篇文章，原文地址
+
+ES2019最近已完成制定，这意味着JavaScript将有很多新特性供大家学习。这些特性目前可以在Chrome 73中使用。
+
+Array#{flat, flatMap}
+Object.fromEntries
+String#{trimStart, trimEnd}
+Symbol#description
+try {} catch {} optional b">
+<meta property="og:image" content="http://blog-yuchen.oss-cn-shanghai.aliyuncs.com/es2019support.png">
+<meta property="og:updated_time" content="2019-03-07T02:33:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES2019中的新特性">
+<meta name="twitter:description" content="文本为翻译计划的第一篇文章，原文地址
+
+ES2019最近已完成制定，这意味着JavaScript将有很多新特性供大家学习。这些特性目前可以在Chrome 73中使用。
+
+Array#{flat, flatMap}
+Object.fromEntries
+String#{trimStart, trimEnd}
+Symbol#description
+try {} catch {} optional b">
+<meta name="twitter:image" content="http://blog-yuchen.oss-cn-shanghai.aliyuncs.com/es2019support.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/04/newFeatureInES/"/>
+
+
+
+
+
+  <title> ES2019中的新特性 | Yuchen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuchen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">BrainStorming</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/newFeatureInES/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuchen Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onk2gx4m2.bkt.clouddn.com/myimg.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuchen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ES2019中的新特性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T23:02:41+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>文本为翻译计划的第一篇文章，<a href="http://thecodebarbarian.com/whats-new-in-es2019-flat-flatmap-catch.html?utm_source=ponyfoo+weekly&amp;utm_medium=email&amp;utm_campaign=issue-154" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>ES2019最近已完成制定，这意味着JavaScript将有很多新特性供大家学习。这些特性目前可以在Chrome 73中使用。</p>
+<ul>
+<li>Array#{flat, flatMap}</li>
+<li>Object.fromEntries</li>
+<li>String#{trimStart, trimEnd}</li>
+<li>Symbol#description</li>
+<li>try {} catch {} optional binding</li>
+<li>JSON superset</li>
+<li>well-formed JSON.stringify</li>
+<li>stable Array#sort</li>
+<li>revised Function#toString</li>
+</ul>
+<p>遗憾的是，在写此文的时候还没有基于V8 7.3的Node.js版本,目前的Node.js 12 仍然是基于V8 7.1。然而，V8 v7.0已经包含了ES2019的大部分特性，如下图所示。本文中我们仍然使用Node.js 11.6(V8 v7.0.276)。</p>
+<p><img src="http://blog-yuchen.oss-cn-shanghai.aliyuncs.com/es2019support.png" alt=""></p>
+<h3 id="array-flat-和array-flatmap"><code>Array#flat()</code>和<code>Array#flatMap()</code></h3>
+<p><code>flat()</code> 和 <code>flatMap()</code>在Chrome 69 和 V8 6.9 中是可用的，因此你需要 Node.js 11。</p>
+<p><code>Array#flat()</code>跟Lodash的<code>_.flattenDepth()</code>方法类似。<code>flat()</code>方法接受一组嵌套数组，并将该嵌套数组扁平化。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]].flat(); <span class="comment">// [1, 2, 3, 4, 5, 6]</span></div></pre></td></tr></table></figure>
+<p>默认情况下，<code>flat()</code>仅扁平化一层：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[[[1, 2]]</span>, <span class="string">[[3, 4]]</span>, <span class="string">[[5, 6]]</span>].flat(<span class="number">2</span>); // [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div></pre></td></tr></table></figure>
+<p>但是，<code>flat()</code>接收一个表示深度的参数来确定你想要扁平化的深度。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[[[1, 2]]</span>, <span class="string">[[3, 4]]</span>, <span class="string">[[5, 6]]</span>].flat(<span class="number">2</span>); // [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div></pre></td></tr></table></figure>
+<p>新的<code>flatMap()</code>方法相当于在使用<code>map()</code>之后调用<code>flat()</code>。如果你的<code>map()</code>返回一个数组，这将非常方便。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> oddNumbers = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>];</div><div class="line"></div><div class="line"><span class="comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]</span></div><div class="line"><span class="keyword">const</span> allNumbers = oddNumbers.flatMap(<span class="built_in">num</span> =&gt; ([<span class="built_in">num</span>, <span class="built_in">num</span> + <span class="number">1</span>]));</div></pre></td></tr></table></figure>
+<p>因为<code>flatMap()</code>的回调参数返回了一个数组，<code>flatMap()</code>扁平化了该数组。上面的方法类似于：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> allNumbers = oddNumbers.map(<span class="built_in">num</span> =&gt; ([<span class="built_in">num</span>, <span class="built_in">num</span> + <span class="number">1</span>])).flat();</div></pre></td></tr></table></figure>
+<p>使用<code>flatMap()</code>时有一个优雅的小技巧，你可以一步实现<code>filter()</code>和<code>map()</code>。 你可以在<code>flatMap()</code>回调中通过返回一个空数组过滤掉一个参数。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// [ 1, 3, 5, 7, 9 ]</span></div><div class="line"><span class="keyword">const</span> oddNumbers = allNumbers.flatMap(<span class="built_in">num</span> =&gt; <span class="built_in">num</span> % <span class="number">2</span> === <span class="number">0</span> ? [] : <span class="built_in">num</span>);</div></pre></td></tr></table></figure>
+<h3 id="object-fromentries"><code>Object.fromEntries()</code></h3>
+<p><code>Object.fromEntries()</code>方法目前在所有版本的Node.js中都无法使用，你可以npm安装 <code>object.fromentries</code>polyfill。</p>
+<p><code>Object.fromEntries()</code>试图使Map到Object的转换变得简单。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Object</span>.fromEntries(new <span class="symbol">Map</span>([[<span class="string">'hello'</span>, <span class="string">'world'</span>], [<span class="string">'foo'</span>, <span class="string">'bar'</span>]]));</div><div class="line">// // &#123; hello: <span class="string">'world'</span>, foo: <span class="string">'bar'</span> &#125;</div></pre></td></tr></table></figure>
+<p>一个灵巧的副作用是你可以把键值对数组转化为JavaScipt对象。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Object</span>.fromEntries([[<span class="string">'hello'</span>, <span class="string">'world'</span>], [<span class="string">'foo'</span>, <span class="string">'bar'</span>]]);</div><div class="line">// &#123; hello: <span class="string">'world'</span>, foo: <span class="string">'bar'</span> &#125;</div></pre></td></tr></table></figure>
+<p>该方法的主要功能是将map类型转换为object类型，但是键值对的转换仍然是有帮助的。</p>
+<p>例如，MangoDB 不允许用<code>.</code>符号来存储key。在MangoDB中存储带有<code>.</code>的key时要使用键值对数组。 <code>Object.fromEntries()</code>和它的反函数 <code>Object.entries()</code>使对象与键值对数组之间的转换变得容易了很多。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">const packages = &#123; <span class="string">'lodash.get'</span>: <span class="string">'4.x'</span>, <span class="string">'object.fromentries'</span>: <span class="string">'2.x'</span> &#125;;</div><div class="line"></div><div class="line"><span class="regexp">//</span> Stores `<span class="javascript">[ [ <span class="string">'lodash.get'</span>, <span class="string">'4.x'</span> ], [ <span class="string">'object.fromentries'</span>, <span class="string">'2.x'</span> ] ]</span>`</div><div class="line"><span class="keyword">await</span> mongoose.model(<span class="string">'Project'</span>).create(&#123; packages: Object.entries(packages) &#125;);</div><div class="line"></div><div class="line"><span class="keyword">await</span> mongoose.model(<span class="string">'Project'</span>).findOne().<span class="keyword">then</span>(doc =&gt; &#123;</div><div class="line">  <span class="regexp">//</span> Convert `<span class="javascript">[ [ <span class="string">'lodash.get'</span>, <span class="string">'4.x'</span> ], [ <span class="string">'object.fromentries'</span>, <span class="string">'2.x'</span> ] ]</span>`</div><div class="line">  <span class="regexp">//</span> back into a native JavaScript object.</div><div class="line">  <span class="keyword">return</span> Object.assign(doc, &#123; packages: Object.fromEntries(doc.packages) &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="symbol-description"><code>Symbol#description</code></h3>
+<p>Symbol 首次出现在ES2015中，用来解决属性间的命名冲突。一个Symbol对象内的属性名都是独一无二的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> sym1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</div><div class="line"><span class="keyword">const</span> sym2 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</div><div class="line"><span class="keyword">const</span> obj = &#123; [sym1]: <span class="string">'bar'</span>, [sym2]: <span class="string">'baz'</span> &#125;;</div><div class="line"><span class="built_in">console</span>.log(obj[sym1]); <span class="comment">// 'bar'</span></div><div class="line"><span class="built_in">console</span>.log(obj[sym2]); <span class="comment">// 'baz'</span></div></pre></td></tr></table></figure>
+<p><code>Symbol()</code>的第一个参数被称为description。description不是id，多个symbol对象可以拥有相同的description并且互相之间没有冲突。symbol对象的description完全是为了调试功能。</p>
+<p>在ES2019之前，如果你想访问symbol对象的description，只能使用<code>.tostring()</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</div><div class="line"></div><div class="line">sym.toString(); <span class="comment">// Symbol('foo')</span></div></pre></td></tr></table></figure>
+<p>在 Node.js 11中你可以这么访问：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sym.<span class="keyword">description</span>; <span class="comment">// foo</span></div></pre></td></tr></table></figure>
+<p><code>description</code>属性是不可写的。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sym.<span class="keyword">description</span>; <span class="comment">// foo</span></div><div class="line">sym.<span class="keyword">description</span> = <span class="string">'bar'</span>;</div><div class="line">sym.<span class="keyword">description</span>; <span class="comment">// still "foo"</span></div></pre></td></tr></table></figure>
+<h3 id="可选的catch绑定">可选的<code>catch</code>绑定</h3>
+<p>在Node.js 8中，使用<code>try/catch</code>时你总是需要在catch中声明一个变量，即使你用不到该变量。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">  <span class="comment">// Need to specify `err`, even if it isn't used.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES2019中可选的<code>catch</code>绑定能让你跳过在catch中定义变量。可选的<code>catch</code>绑定在Node.js 10和Chrome 66以上版本中是可用的。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125; <span class="keyword">catch</span> &#123;</div><div class="line">  <span class="comment">// No `err` variable</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FETP/" rel="tag"># FETP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/25/es6-array/" rel="next" title="ANT-FORM">
+                <i class="fa fa-chevron-left"></i> ANT-FORM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://onk2gx4m2.bkt.clouddn.com/myimg.png"
+               alt="Yuchen Yao" />
+          <p class="site-author-name" itemprop="name">Yuchen Yao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yuchenyao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2197138851" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#array-flat-和array-flatmap"><span class="nav-number">1.</span> <span class="nav-text">Array#flat()和Array#flatMap()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object-fromentries"><span class="nav-number">2.</span> <span class="nav-text">Object.fromEntries()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symbol-description"><span class="nav-number">3.</span> <span class="nav-text">Symbol#description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选的catch绑定"><span class="nav-number">4.</span> <span class="nav-text">可选的catch绑定</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuchen Yao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
