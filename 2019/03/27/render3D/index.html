@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="FETP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="原文地址
+
+在我们探索如何最佳的方法时，我们想出了一个十分有趣的原型：一个充满颗粒的旋转球开始。
+
+  See the Pen 
+  render-3d-in-2d-canvas by yuchenyao (@yuchenyao)
+  on CodePen.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在2D CANVAS 中渲染3D图像">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/render3D/index.html">
+<meta property="og:site_name" content="Yuchen's Blog">
+<meta property="og:description" content="原文地址
+
+在我们探索如何最佳的方法时，我们想出了一个十分有趣的原型：一个充满颗粒的旋转球开始。
+
+  See the Pen 
+  render-3d-in-2d-canvas by yuchenyao (@yuchenyao)
+  on CodePen.">
+<meta property="og:updated_time" content="2019-03-27T07:52:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在2D CANVAS 中渲染3D图像">
+<meta name="twitter:description" content="原文地址
+
+在我们探索如何最佳的方法时，我们想出了一个十分有趣的原型：一个充满颗粒的旋转球开始。
+
+  See the Pen 
+  render-3d-in-2d-canvas by yuchenyao (@yuchenyao)
+  on CodePen.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/render3D/"/>
+
+
+
+
+
+  <title> 如何在2D CANVAS 中渲染3D图像 | Yuchen's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yuchen's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">BrainStorming</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/render3D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuchen Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuchen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何在2D CANVAS 中渲染3D图像
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T15:48:00+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://www.basedesign.com/blog/how-to-render-3d-in-2d-canvas" target="_blank" rel="external">原文地址</a></p>
+</blockquote>
+<p>在我们探索如何最佳的方法时，我们想出了一个十分有趣的原型：一个充满颗粒的旋转球开始。</p>
+<p class="codepen" data-height="415" data-theme-id="dark" data-default-tab="js,result" data-user="yuchenyao" data-slug-hash="bZqYrg" style="height: 415px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="render-3d-in-2d-canvas">
+  <span>See the Pen <a href="https://codepen.io/yuchenyao/pen/bZqYrg/" target="_blank" rel="external">
+  render-3d-in-2d-canvas</a> by yuchenyao (<a href="https://codepen.io/yuchenyao" target="_blank" rel="external">@yuchenyao</a>)
+  on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<a id="more"></a>
+<p>从技术角度出发，第一步是最有趣的。因为接下来所有的动画步骤都是基于平面2D，不能使用3D渲染器，例如Three.js。因此，我必须搞清楚如何只用 Canvas 2D API 来渲染3D图像。</p>
+<p>在这篇文章，我将向你们展示我是如何做到的。首先，我要解释一下如何使用JavaScript Canvas 2D API来渲染一个3D场景中的基本图像。接着，在文章的第二部分中国，我将向你们展示如何用使这些变得更有趣。</p>
+<h2 id="1-创建canvas画布">1. 创建Canvas画布</h2>
+<p>准备开始前，我们需要在HTML中新增一个canvas元素。我们还要为元素创建一个ID以便于选择。这些就是在HTML中要做的所有工作！</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"scene"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对于CSS，我们需要去除body的默认margin，并且用<code>overflow: hidden;</code>来阻止滚动条的显示。因为我们想让canvas铺满屏幕，因此我们把它的宽高定义为可视窗口的100%。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">canvas</span> &#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">100vw</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100vh</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了在JavaScript中创建一个满屏的canvas，我们需要从DOM中选中canvas，然后获取canvas 2d 上下文。接下来的创建过程主要是关于用户缩放屏幕后的处理。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const <span class="keyword">canvas</span> = document.getElementById(<span class="string">'scene'</span>);</div><div class="line"></div><div class="line">let width = <span class="keyword">canvas</span>.offsetWidth; <span class="comment">// Width of the scene</span></div><div class="line">let height = <span class="keyword">canvas</span>.offsetHeight; <span class="comment">// Height of the scene</span></div><div class="line"></div><div class="line">const ctx = <span class="keyword">canvas</span>.getContext(<span class="string">'2d'</span>);</div><div class="line"></div><div class="line">function onResize () &#123;</div><div class="line">  width = <span class="keyword">canvas</span>.offsetWidth;</div><div class="line">  height = <span class="keyword">canvas</span>.offsetHeight;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">window</span>.devicePixelRatio &gt; <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">canvas</span>.width = <span class="keyword">canvas</span>.clientWidth * <span class="number">2</span>;</div><div class="line">    <span class="keyword">canvas</span>.height = <span class="keyword">canvas</span>.clientHeight * <span class="number">2</span>;</div><div class="line">    ctx.<span class="keyword">scale</span>(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">canvas</span>.width = width;</div><div class="line">    <span class="keyword">canvas</span>.height = height;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">window</span>.addEventListener(<span class="string">'resize'</span>, onResize);</div><div class="line">onResize();</div></pre></td></tr></table></figure>
+<h2 id="2-创建颗粒">2. 创建颗粒</h2>
+<p>为了很好的管理大量的颗粒，最简单的方法就是使用Class。Class允许我们为每个颗粒定义随机的属性，并且让它们之间共享通用方法。</p>
+<p>创建Class的第一步就是constructor方法，我们用它来存储每个颗粒的自定义属性。接着为小圆点创建两个方法：<code>project()</code>和<code>draw()</code>。<code>project()</code>就是奇迹发生的地方，在这里我们把颗粒的3D坐标转换到了2D世界。最后，我们计算得出<code>projected valued</code>之后， <code>draw()</code>帮我们在canvas上画出颗粒。</p>
+<h2 id="3-场景渲染">3. 场景渲染</h2>
+<p>现在所有的颗粒都做好了渲染到屏幕的准备。接下来我们需要创建一个简单的方法，遍历所有的小圆点，并将他们渲染到canvas上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// Clear the scene from top left to bottom right</span></div><div class="line">  ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, width, height);</div><div class="line">  </div><div class="line">  <span class="comment">// Loop through the dots array and draw every dot</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dots.length; i++) &#123;</div><div class="line">    dots[i].draw();</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// Request the browser the call render once its ready for a new frame</span></div><div class="line">  <span class="built_in">window</span>.requestAnimationFrame(render);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你尝试过上面的代码，你会发现这些原点都是静止的，因为我们还没在3D场景中移动它们。</p>
+<p>为了让它们动起来，有很多方法可以选择，没有完美的解决办法。本文我将使用<code>TweenMax</code>插件，因为它不需要繁杂的创建流程，使用起来很简单。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="string">class</span> <span class="string">Dot</span> <span class="string">&#123;</span></div><div class="line">  <span class="string">constructor()</span> <span class="string">&#123;</span></div><div class="line">    <span class="string">...</span></div><div class="line">    </div><div class="line">    <span class="string">TweenMax.to(this,</span> <span class="string">(Math.random()</span> <span class="string">*</span> <span class="number">10</span> <span class="string">+</span> <span class="number">15</span><span class="string">),</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">      z:</span> <span class="string">width,</span></div><div class="line"><span class="attr">      repeat:</span> <span class="bullet">-1</span><span class="string">,</span></div><div class="line"><span class="attr">      yoyo:</span> <span class="literal">true</span><span class="string">,</span></div><div class="line"><span class="attr">      ease:</span> <span class="string">Power2.easeOut,</span></div><div class="line"><span class="attr">      yoyoEase:</span> <span class="literal">true</span><span class="string">,</span></div><div class="line"><span class="attr">      delay:</span> <span class="string">Math.random()</span> <span class="string">*</span> <span class="bullet">-25</span></div><div class="line">    <span class="string">&#125;);</span></div><div class="line">  <span class="string">&#125;</span></div><div class="line">  <span class="string">...</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
+<p>你可能觉得这么。我们不用做复杂的数学模拟。最难得部分已经完成了，可以发挥我们的想象力了！</p>
+<h3 id="make-a-globe">make a globe</h3>
+<p>为了用颗粒创造一个球，我们需要在球体表面计算坐标。球体表面坐标的计算不再使用经典的笛卡尔坐标系(x,y,z)，而是采用极坐标系中的三个值：</p>
+<ul>
+<li>Radius 半径</li>
+<li>Theta 距离z轴的角度 [0, Pi]</li>
+<li>Phi 距离x轴的角度 [0, 2Pi]</li>
+</ul>
+<p>在我们的例子中，我们希望每个原点都是随机的，因此我们在创建原点时，要将Theta和Phi定义为随机值。每个原点的Radius都一样，我们可以把它存为全局变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> GLOBE_RADIUS = width * <span class="number">0.7</span>; <span class="comment">// Radius of the globe based on the canvas width</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createDots</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// Empty the array of dots</span></div><div class="line">  dots.length = <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="comment">// Create a new dot based on the amount needed</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; DOTS_AMOUNT; i++) &#123;</div><div class="line">    <span class="keyword">const</span> theta = <span class="built_in">Math</span>.random() * <span class="number">2</span> * <span class="built_in">Math</span>.PI; <span class="comment">// Random value between [0, 2PI] 方位角</span></div><div class="line">    <span class="keyword">const</span> phi = <span class="built_in">Math</span>.acos((<span class="built_in">Math</span>.random() * <span class="number">2</span>) - <span class="number">1</span>); <span class="comment">// Random value between [0, PI] 天顶角</span></div><div class="line"></div><div class="line">    <span class="comment">// Calculate the [x, y, z] coordinates of the dot along the globe</span></div><div class="line">    <span class="keyword">const</span> x = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.cos(theta);</div><div class="line">    <span class="keyword">const</span> y = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.sin(theta);</div><div class="line">    <span class="keyword">const</span> z = (GLOBE_RADIUS * <span class="built_in">Math</span>.cos(phi)) + GLOBE_CENTER_Z;</div><div class="line">    dots.push(<span class="keyword">new</span> Dot(x, y, z));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可能很好奇为什么我们没有用基本方法来为Phi创建随机值。如果我们这样做，在球体表面的颗粒分布就会很不均匀，并且在极点附近会分布较多的颗粒。因此我们使用Arc Cosine 函数来修复这个问题。</p>
+<p>最后，当我们想要在2D canvas上画出圆点时，为了匹配3D世界中的圆点，我们需要把极坐标转换为笛卡尔坐标来。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dot</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(x, y, z) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">    <span class="keyword">this</span>.z = z;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.xProject = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.yProject = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.sizeProjection = <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Do some math to project the 3D position into the 2D canvas</span></div><div class="line">  project(sin, cos) &#123;</div><div class="line">    const rotX = cos * <span class="keyword">this</span>.x + sin * (<span class="keyword">this</span>.z - GLOBE_CENTER_Z);</div><div class="line">    const rotZ = -sin * <span class="keyword">this</span>.x + cos * (<span class="keyword">this</span>.z - GLOBE_CENTER_Z) + GLOBE_CENTER_Z;</div><div class="line">    <span class="keyword">this</span>.sizeProjection = FIELD_OF_VIEW / (FIELD_OF_VIEW - rotZ);</div><div class="line">    <span class="keyword">this</span>.xProject = (rotX * <span class="keyword">this</span>.sizeProjection) + PROJECTION_CENTER_X;</div><div class="line">    <span class="keyword">this</span>.yProject = (<span class="keyword">this</span>.y * <span class="keyword">this</span>.sizeProjection) + PROJECTION_CENTER_Y;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Draw the dot on the canvas</span></div><div class="line">  draw(sin, cos) &#123;</div><div class="line">    <span class="keyword">this</span>.project(sin, cos);</div><div class="line">    ctx.beginPath();</div><div class="line">    ctx.arc(<span class="keyword">this</span>.xProject, <span class="keyword">this</span>.yProject, DOT_RADIUS * <span class="keyword">this</span>.sizeProjection, <span class="number">0</span>, Math.PI * <span class="number">2</span>);</div><div class="line">    ctx.closePath();</div><div class="line">    ctx.fill();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/FETP/" rel="tag"># FETP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/newFeatureInES/" rel="next" title="ES2019中的新特性">
+                <i class="fa fa-chevron-left"></i> ES2019中的新特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yuchen Yao" />
+          <p class="site-author-name" itemprop="name">Yuchen Yao</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yuchenyao" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2197138851" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建canvas画布"><span class="nav-number">1.</span> <span class="nav-text">1. 创建Canvas画布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建颗粒"><span class="nav-number">2.</span> <span class="nav-text">2. 创建颗粒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-场景渲染"><span class="nav-number">3.</span> <span class="nav-text">3. 场景渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#make-a-globe"><span class="nav-number">3.1.</span> <span class="nav-text">make a globe</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuchen Yao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
