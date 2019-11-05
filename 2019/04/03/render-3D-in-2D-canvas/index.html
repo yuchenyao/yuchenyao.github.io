@@ -123,7 +123,7 @@
   See the Pen 
   render-3d-in-2d-canvas by yuchenyao (@yuchenyao)
   on CodePen.">
-<meta property="og:updated_time" content="2019-04-03T02:38:42.000Z">
+<meta property="og:updated_time" content="2019-04-03T03:03:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在2D CANVAS 中渲染3D图像">
 <meta name="twitter:description" content="原文地址
@@ -388,7 +388,7 @@
 <p>关于球坐标与三维直角坐标的转换看<a href="https://www.cnblogs.com/hans_gis/archive/2012/11/21/2755126.html" target="_blank" rel="external">这里</a>。</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一些常量</span></div><div class="line"><span class="keyword">const</span> DOTS_AMOUNT = <span class="number">1000</span>; <span class="comment">// 点的数量</span></div><div class="line"><span class="keyword">const</span> DOT_RADIUS = <span class="number">4</span>; <span class="comment">// 点的半径</span></div><div class="line">let GLOBE_RADIUS = <span class="built_in">width</span> * <span class="number">0.4</span>; <span class="comment">//球体半径</span></div><div class="line">let PROJECTION_CENTER_X = <span class="built_in">width</span> / <span class="number">2</span>; <span class="comment">//画布x轴中心</span></div><div class="line">let PROJECTION_CENTER_Y = <span class="built_in">height</span> / <span class="number">2</span>; <span class="comment">// 画布y轴中心</span></div><div class="line">let FIELD_OF_VIEW = <span class="built_in">width</span> * <span class="number">0.8</span>; <span class="comment">// 视野区域</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createDots</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  dots.length = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; DOTS_AMOUNT; i++) &#123;</div><div class="line">    <span class="keyword">const</span> theta = <span class="built_in">Math</span>.random() * <span class="number">2</span> * <span class="built_in">Math</span>.PI; <span class="comment">// [0, 2PI]的随机值</span></div><div class="line">    <span class="keyword">const</span> phi = <span class="built_in">Math</span>.acos((<span class="built_in">Math</span>.random() * <span class="number">2</span>) - <span class="number">1</span>); <span class="comment">//  [0, PI]的随机值</span></div><div class="line">    <span class="comment">// 球坐标转换为三维直角坐标</span></div><div class="line">    <span class="keyword">const</span> x = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.cos(theta);</div><div class="line">    <span class="keyword">const</span> y = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.sin(theta);</div><div class="line">    <span class="keyword">const</span> z = GLOBE_RADIUS * <span class="built_in">Math</span>.cos(phi);</div><div class="line">    dots.push(<span class="keyword">new</span> Dot(x, y, z));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="为什么使用math-acos-创建-phi-的随机值？">为什么使用Math.acos()创建 PHI 的随机值？</h4>
+<p><strong>为什么使用Math.acos()创建 PHI 的随机值？</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> phi = <span class="built_in">Math</span>.random() * <span class="built_in">Math</span>.PI;</div><div class="line"><span class="keyword">const</span> phi = <span class="built_in">Math</span>.acos((<span class="built_in">Math</span>.random() * <span class="number">2</span>) - <span class="number">1</span>);</div></pre></td></tr></table></figure>
 <p><strong>因为点在球体表面的分布会不均匀，在球的两极会分布更多的点。</strong></p>
 <h3 id="创建-class-dot">创建 Class Dot</h3>
@@ -398,6 +398,19 @@
 <h2 id="3-场景渲染">3. 场景渲染</h2>
 <p>现在所有的颗粒都做好了渲染到屏幕的准备。接下来我们需要创建一个简单的方法，遍历所有的小圆点，并将他们渲染到canvas上。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">a</span>) </span>&#123;</div><div class="line"></div><div class="line">  ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, width, height);</div><div class="line">  </div><div class="line">  <span class="comment">// 增大旋转角度</span></div><div class="line">  rotation = a * <span class="number">0.0004</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">const</span> sineRotation = <span class="built_in">Math</span>.sin(rotation);</div><div class="line">  <span class="keyword">const</span> cosineRotation = <span class="built_in">Math</span>.cos(rotation);</div><div class="line">  </div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dots.length; i++) &#123;</div><div class="line">    dots[i].draw(sineRotation, cosineRotation);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="built_in">window</span>.requestAnimationFrame(render);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-3d到2d的转换总结">4. 3D到2D的转换总结</h2>
+<ul>
+<li>首先要随机生成大量的圆点。固定球体半径，随机生成Theta和Phi。然后把球坐标(r,theta,phi)转换为三维直角坐标(x,y,z)。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; DOTS_AMOUNT; i++) &#123;</div><div class="line">    <span class="keyword">const</span> theta = <span class="built_in">Math</span>.random() * <span class="number">2</span> * <span class="built_in">Math</span>.PI; <span class="comment">// [0, 2PI]的随机值</span></div><div class="line">    <span class="keyword">const</span> phi = <span class="built_in">Math</span>.acos((<span class="built_in">Math</span>.random() * <span class="number">2</span>) - <span class="number">1</span>); <span class="comment">//  [0, PI]的随机值</span></div><div class="line">    <span class="comment">// 球坐标转换为三维直角坐标</span></div><div class="line">    <span class="keyword">const</span> x = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.cos(theta);</div><div class="line">    <span class="keyword">const</span> y = GLOBE_RADIUS * <span class="built_in">Math</span>.sin(phi) * <span class="built_in">Math</span>.sin(theta);</div><div class="line">    <span class="keyword">const</span> z = GLOBE_RADIUS * <span class="built_in">Math</span>.cos(phi);</div><div class="line">    dots.push(<span class="keyword">new</span> Dot(x, y, z));</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>因为球体是横向转动，因此球体上的点在y轴上的值并未改变，我们只需要考虑x轴和z轴，此时俯视整个坐标轴。我们需要计算出点的运动轨迹，并在canvas上画出，这样所有的点一起转动便是一个旋转的球了。<br>
+<a href="https://blog.csdn.net/sinat_33425327/article/details/78333946" target="_blank" rel="external">坐标旋转变换</a></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<ul>
+<li>原点在z轴上越大，视觉上距离我们越近，在z轴上越小，视觉上距离我们越远。</li>
+</ul>
 
       
     </div>
@@ -443,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/10/6-reasons-why-async-blows-promise-away/" rel="prev" title="Async/Await 完爆 Promise的六个原因">
+                Async/Await 完爆 Promise的六个原因 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -514,7 +531,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -525,7 +542,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -580,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建canvas画布"><span class="nav-number">1.</span> <span class="nav-text">1. 创建Canvas画布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建颗粒"><span class="nav-number">2.</span> <span class="nav-text">2. 创建颗粒</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么使用math-acos-创建-phi-的随机值？"><span class="nav-number">2.0.1.</span> <span class="nav-text">为什么使用Math.acos()创建 PHI 的随机值？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-class-dot"><span class="nav-number">2.1.</span> <span class="nav-text">创建 Class Dot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-场景渲染"><span class="nav-number">3.</span> <span class="nav-text">3. 场景渲染</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建canvas画布"><span class="nav-number">1.</span> <span class="nav-text">1. 创建Canvas画布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-创建颗粒"><span class="nav-number">2.</span> <span class="nav-text">2. 创建颗粒</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-class-dot"><span class="nav-number">2.1.</span> <span class="nav-text">创建 Class Dot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-场景渲染"><span class="nav-number">3.</span> <span class="nav-text">3. 场景渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3d到2d的转换总结"><span class="nav-number">4.</span> <span class="nav-text">4. 3D到2D的转换总结</span></a></li></ol></div>
             
 
           </div>

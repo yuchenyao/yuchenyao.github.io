@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Node," />
 
 
 
@@ -105,12 +105,34 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuchen's Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/04/index.html">
+<meta name="description" content="###1. 问题描述
+后台用node来解析前端上传的CSV文件，由于不同系统CSV文件编码格式不同，导致后台解析出现乱码。
+###2. 解决思路
+找出CSV编码格式—&amp;gt; 用该编码方式解码—&amp;gt; csv-parse解析内容
+###3. 实践
+NPM库jschardet 可以识别出一个Buffer数据所使用的编码格式。
+1234const jschardet = require(&quot;jscha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSV文件上传后台解析乱码问题">
+<meta property="og:url" content="http://yoursite.com/2019/11/05/CSV文件上传后台解析乱码问题/index.html">
 <meta property="og:site_name" content="Yuchen's Blog">
+<meta property="og:description" content="###1. 问题描述
+后台用node来解析前端上传的CSV文件，由于不同系统CSV文件编码格式不同，导致后台解析出现乱码。
+###2. 解决思路
+找出CSV编码格式—&amp;gt; 用该编码方式解码—&amp;gt; csv-parse解析内容
+###3. 实践
+NPM库jschardet 可以识别出一个Buffer数据所使用的编码格式。
+1234const jschardet = require(&quot;jscha">
+<meta property="og:updated_time" content="2019-11-05T08:26:49.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuchen's Blog">
+<meta name="twitter:title" content="CSV文件上传后台解析乱码问题">
+<meta name="twitter:description" content="###1. 问题描述
+后台用node来解析前端上传的CSV文件，由于不同系统CSV文件编码格式不同，导致后台解析出现乱码。
+###2. 解决思路
+找出CSV编码格式—&amp;gt; 用该编码方式解码—&amp;gt; csv-parse解析内容
+###3. 实践
+NPM库jschardet 可以识别出一个Buffer数据所使用的编码格式。
+1234const jschardet = require(&quot;jscha">
 
 
 
@@ -138,13 +160,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/04/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/05/CSV文件上传后台解析乱码问题/"/>
 
 
 
 
 
-  <title> 归档 | Yuchen's Blog </title>
+  <title> CSV文件上传后台解析乱码问题 | Yuchen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -169,7 +191,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,66 +275,173 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 16 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/CSV文件上传后台解析乱码问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuchen Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuchen's Blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSV文件上传后台解析乱码问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-05T16:25:23+08:00">
+                2019-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>###1. 问题描述</p>
+<p>后台用node来解析前端上传的CSV文件，由于不同系统CSV文件编码格式不同，导致后台解析出现乱码。</p>
+<p>###2. 解决思路</p>
+<p>找出CSV编码格式—&gt; 用该编码方式解码—&gt; csv-parse解析内容</p>
+<p>###3. 实践</p>
+<p>NPM库<code>jschardet</code> 可以识别出一个Buffer数据所使用的编码格式。</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const jschardet = require("jschardet")</div><div class="line"></div><div class="line">jschardet.detect("<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>ad<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>a7<span class="symbol">\x</span>c3<span class="symbol">\x</span>a3")</div><div class="line">// &#123; encoding: "UTF-8", confidence: 0.9690625 &#125;</div></pre></td></tr></table></figure>
+<p>支持如下编码</p>
+<ul>
+<li>Big5, GB2312/GB18030, EUC-TW, HZ-GB-2312, and ISO-2022-CN (Traditional and Simplified Chinese)</li>
+<li>EUC-JP, SHIFT_JIS, and ISO-2022-JP (Japanese)</li>
+<li>EUC-KR and ISO-2022-KR (Korean)</li>
+<li>KOI8-R, MacCyrillic, IBM855, IBM866, ISO-8859-5, and windows-1251 (Russian)</li>
+<li>ISO-8859-2 and windows-1250 (Hungarian)</li>
+<li>ISO-8859-5 and windows-1251 (Bulgarian)</li>
+<li>windows-1252</li>
+<li>ISO-8859-7 and windows-1253 (Greek)</li>
+<li>ISO-8859-8 and windows-1255 (Visual and Logical Hebrew)</li>
+<li>TIS-620 (Thai)</li>
+<li>UTF-32 BE, LE, 3412-ordered, or 2143-ordered (with a BOM)</li>
+<li>UTF-16 BE or LE (with a BOM)</li>
+<li>UTF-8 (with or without a BOM)</li>
+<li>ASCII</li>
+</ul>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node/" rel="tag"># Node</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/10/6-reasons-why-async-blows-promise-away/" rel="next" title="Async/Await 完爆 Promise的六个原因">
+                <i class="fa fa-chevron-left"></i> Async/Await 完爆 Promise的六个原因
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/10/JavaScript Function/" itemprop="url">
-              
-                <span itemprop="name">JavaScript中的函数</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-10T08:43:29+08:00"
-              content="2017-04-10" >
-          04-10
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -320,6 +449,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -516,11 +649,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
