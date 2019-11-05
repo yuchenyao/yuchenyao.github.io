@@ -342,12 +342,12 @@
       
         
           
-            <p>###1. 问题描述</p>
+            <h3 id="1-问题描述">1. 问题描述</h3>
 <p>后台用node来解析前端上传的CSV文件，由于不同系统CSV文件编码格式不同，导致后台解析出现乱码。</p>
-<p>###2. 解决思路</p>
-<p>找出CSV编码格式—&gt; 用该编码方式解码—&gt; csv-parse解析内容</p>
-<p>###3. 实践</p>
-<p>NPM库<code>jschardet</code> 可以识别出一个Buffer数据所使用的编码格式。</p>
+<h3 id="2-解决思路">2. 解决思路</h3>
+<p>找出CSV编码格式 —&gt; 用该编码方式解码 —&gt; csv-parse解析内容</p>
+<h3 id="3-实践">3. 实践</h3>
+<p>NPM库 <code>jschardet</code> 可以识别出一个Buffer数据所使用的编码格式。</p>
 <figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const jschardet = require("jschardet")</div><div class="line"></div><div class="line">jschardet.detect("<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>ad<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>a7<span class="symbol">\x</span>c3<span class="symbol">\x</span>a3")</div><div class="line">// &#123; encoding: "UTF-8", confidence: 0.9690625 &#125;</div></pre></td></tr></table></figure>
 <p>支持如下编码</p>
 <ul>
