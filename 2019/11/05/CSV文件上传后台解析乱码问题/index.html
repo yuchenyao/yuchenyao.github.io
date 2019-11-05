@@ -111,7 +111,8 @@
 找出CSV编码格式 —&amp;gt; 用该编码方式解码 —&amp;gt; csv-parse解析内容
 3. 实践
 NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
-1234const jschardet = require(&quot;jschardet&quot;)">
+用法如下
+123const jschardet = require(&quot;jschard">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSV文件上传后台解析乱码问题">
 <meta property="og:url" content="http://yoursite.com/2019/11/05/CSV文件上传后台解析乱码问题/index.html">
@@ -122,8 +123,9 @@ NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
 找出CSV编码格式 —&amp;gt; 用该编码方式解码 —&amp;gt; csv-parse解析内容
 3. 实践
 NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
-1234const jschardet = require(&quot;jschardet&quot;)">
-<meta property="og:updated_time" content="2019-11-05T08:31:04.448Z">
+用法如下
+123const jschardet = require(&quot;jschard">
+<meta property="og:updated_time" content="2019-11-05T08:39:46.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSV文件上传后台解析乱码问题">
 <meta name="twitter:description" content="1. 问题描述
@@ -132,7 +134,8 @@ NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
 找出CSV编码格式 —&amp;gt; 用该编码方式解码 —&amp;gt; csv-parse解析内容
 3. 实践
 NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
-1234const jschardet = require(&quot;jschardet&quot;)">
+用法如下
+123const jschardet = require(&quot;jschard">
 
 
 
@@ -363,7 +366,8 @@ NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
 <p>找出CSV编码格式 —&gt; 用该编码方式解码 —&gt; csv-parse解析内容</p>
 <h3 id="3-实践">3. 实践</h3>
 <p>NPM库 <code>jschardet</code> 可以识别出一个Buffer数据所使用的编码格式。</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const jschardet = require("jschardet")</div><div class="line"></div><div class="line">jschardet.detect("<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>ad<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>a7<span class="symbol">\x</span>c3<span class="symbol">\x</span>a3")</div><div class="line">// &#123; encoding: "UTF-8", confidence: 0.9690625 &#125;</div></pre></td></tr></table></figure>
+<p>用法如下</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const jschardet = require("jschardet");</div><div class="line">jschardet.detect("<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>ad<span class="symbol">\x</span>c3<span class="symbol">\x</span>a0<span class="symbol">\x</span>c3<span class="symbol">\x</span>a7<span class="symbol">\x</span>c3<span class="symbol">\x</span>a3");</div><div class="line">// &#123; encoding: "UTF-8", confidence: 0.9690625 &#125;</div></pre></td></tr></table></figure>
 <p>支持如下编码</p>
 <ul>
 <li>Big5, GB2312/GB18030, EUC-TW, HZ-GB-2312, and ISO-2022-CN (Traditional and Simplified Chinese)</li>
@@ -381,6 +385,8 @@ NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
 <li>UTF-8 (with or without a BOM)</li>
 <li>ASCII</li>
 </ul>
+<h3 id="4-代码">4. 代码</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> jschardet = <span class="built_in">require</span>(<span class="string">"jschardet"</span>)</div><div class="line"><span class="keyword">const</span> iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>);</div><div class="line"><span class="keyword">const</span> csvParser = <span class="built_in">require</span>(<span class="string">'csv-parse'</span>);</div><div class="line"><span class="comment">// 识别文件编码格式</span></div><div class="line"><span class="keyword">const</span> &#123; encoding &#125; = jschardet.detect(buffer);</div><div class="line"><span class="comment">// 按照原格式解码文件</span></div><div class="line"><span class="keyword">const</span> content = iconv.decode(buffer, encoding);</div><div class="line"><span class="comment">// 解析文件内容</span></div><div class="line">csvParser(content);</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -563,7 +569,7 @@ NPM库 jschardet 可以识别出一个Buffer数据所使用的编码格式。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-问题描述"><span class="nav-number">1.</span> <span class="nav-text">1. 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解决思路"><span class="nav-number">2.</span> <span class="nav-text">2. 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-实践"><span class="nav-number">3.</span> <span class="nav-text">3. 实践</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-问题描述"><span class="nav-number">1.</span> <span class="nav-text">1. 问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解决思路"><span class="nav-number">2.</span> <span class="nav-text">2. 解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-实践"><span class="nav-number">3.</span> <span class="nav-text">3. 实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-代码"><span class="nav-number">4.</span> <span class="nav-text">4. 代码</span></a></li></ol></div>
             
 
           </div>
