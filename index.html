@@ -265,6 +265,181 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/vue-tricks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuchen Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuchen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/06/09/vue-tricks/" itemprop="url">
+                  Vue Tricks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T15:17:38+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>摘抄一些Vue的小技巧</p>
+</blockquote>
+<h3 id="监听组件声明周期">监听组件声明周期</h3>
+<p>使用 <code>@hook</code> 即可监听组件生命周期。同样的， created 、 updated 等也可以使用此方法。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">List</span> @<span class="attr">hook:mounted</span>=<span class="string">"listenMounted"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="程序化事件侦听器">程序化事件侦听器</h3>
+<p>在组件销毁时要移除侦听器，肯定写过以下代码。this.timer 唯一的作用只是为了能够在 beforeDestroy 内取到计时器序号，除此之外没有任何用处。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    mounted() &#123;</div><div class="line">        <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(Date.now())</div><div class="line">        &#125;, <span class="number">1000</span>)</div><div class="line">    &#125;,</div><div class="line">    beforeDestroy() &#123;</div><div class="line">        clearInterval(<span class="keyword">this</span>.timer)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以通过 $on 或 $once 监听页面生命周期销毁来解决这个问题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    mounted() &#123;</div><div class="line">        <span class="keyword">this</span>.creatInterval( hello )</div><div class="line">        <span class="keyword">this</span>.creatInterval( world )</div><div class="line">    &#125;,</div><div class="line">    creatInterval(msg) &#123;</div><div class="line">        <span class="keyword">let</span> timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(msg)</div><div class="line">        &#125;, <span class="number">1000</span>)</div><div class="line">        <span class="keyword">this</span>.$once( hook:beforeDestroy , <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            clearInterval(timer)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="css样式穿透">CSS样式穿透</h3>
+<p>样式穿透在css预处理器中使用才生效。</p>
+<ul>
+<li>less 使用 <code>/deep/</code></li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;style scoped lang=<span class="string">"less"</span>&gt;</div><div class="line"><span class="selector-class">.content</span> /deep/ <span class="selector-class">.el-button</span> &#123;</div><div class="line"> <span class="attribute">height</span>: <span class="number">60px</span>;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>scss 使用 <code>::v-deep</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span> <span class="attr">lang</span>=<span class="string">"scss"</span>&gt;</span><span class="css"></span></div><div class="line"><span class="selector-class">.content</span> <span class="selector-pseudo">::v-deep</span> <span class="selector-class">.el-button</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>stylus使用 <code>&gt;&gt;&gt;</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span> <span class="attr">ang</span>=<span class="string">"stylus"</span>&gt;</span><span class="css"></span></div><div class="line">外层 &gt;&gt;&gt; <span class="selector-class">.custon-components</span>&#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="路由参数解耦">路由参数解耦</h3>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">const</span> <span class="string">router</span> <span class="string">=</span> <span class="string">new</span> <span class="string">VueRouter(&#123;</span></div><div class="line"><span class="attr">    routes:</span> <span class="string">[&#123;</span></div><div class="line"><span class="attr">        path:</span>  <span class="string">/user/:id</span> <span class="string">,</span></div><div class="line"><span class="attr">        component:</span> <span class="string">User,</span></div><div class="line"><span class="attr">        props:</span> <span class="literal">true</span></div><div class="line">    <span class="string">&#125;]</span></div><div class="line"><span class="string">&#125;)</span></div></pre></td></tr></table></figure>
+<p>将路由的 props 属性设置为 true 后，组件内可通过 props 接收到 params 参数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">export</span> <span class="selector-tag">default</span> &#123;</div><div class="line">    <span class="attribute">props</span>: [ id ],</div><div class="line">    methods: &#123;</div><div class="line">        <span class="built_in">getParamsId</span>() &#123;</div><div class="line">            return this.id</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外还可以通过函数模式来返回 props</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const router = new VueRouter(&#123;</div><div class="line"><span class="symbol">    routes:</span> [&#123;</div><div class="line"><span class="symbol">        path:</span>  <span class="meta-keyword">/user/</span>:id ,</div><div class="line"><span class="symbol">        component:</span> User,</div><div class="line"><span class="symbol">        props:</span> (route) =&gt; (&#123;</div><div class="line"><span class="symbol">            id:</span> route.query.id</div><div class="line">        &#125;)</div><div class="line">    &#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="事件参数-event">事件参数$event</h3>
+<p><code>$event</code> 是事件对象的特殊变量，在一些场景能给我们实现复杂功能提供更多可用的参数</p>
+<ul>
+<li>原生事件：在原生事件中表现和默认的事件对象相同</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">input</span>=<span class="string">"inputHandler( hello , $event)"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        inputHandler(msg, e) &#123;</div><div class="line">            <span class="built_in">console</span>.log(e.target.value)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>自定义事件：在自定义事件中表现为捕获从子组件抛出的值</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 子组件</span></div><div class="line">export <span class="keyword">default</span> &#123;</div><div class="line">    methods: &#123;</div><div class="line">        customEvent() &#123;</div><div class="line">            <span class="keyword">this</span>.$emit( custom-<span class="keyword">event</span> ,  some <span class="keyword">value</span> )</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">my-item</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in list"</span> @<span class="attr">custom-event</span>=<span class="string">"customEvent(index, $event)"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        customEvent(index, e) &#123;</div><div class="line">            <span class="built_in">console</span>.log(e) <span class="comment">//  some value</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="watch高阶使用">watch高阶使用</h3>
+<ul>
+<li>立即执行</li>
+</ul>
+<p>watch 是在监听属性改变时才会触发，有些时候，我们希望在组件创建后 watch 能够立即执行</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="title">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="class"><span class="keyword">data</span>() &#123;</span></div><div class="line">        <span class="title">return</span> &#123;</div><div class="line">            <span class="title">name</span>:  <span class="type">Joe</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    watch: &#123;</div><div class="line">        name: &#123;</div><div class="line">            handler:  sayName ,</div><div class="line">            immediate: true  &lt;-<span class="comment">-------</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">        sayName() &#123;</div><div class="line">            console.log(this.name)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>深度监听</li>
+</ul>
+<p>在监听对象时，对象内部的属性被改变时无法触发 watch ，我们可以为其设置深度监听</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="string">export</span> <span class="string">default</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">    data:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">        studen:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">            name:</span>  <span class="string">Joe</span> <span class="string">,</span></div><div class="line"><span class="attr">            skill:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">                run:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">                    speed:</span>  <span class="string">fast</span></div><div class="line">                <span class="string">&#125;</span></div><div class="line">            <span class="string">&#125;</span></div><div class="line">        <span class="string">&#125;</span></div><div class="line">    <span class="string">&#125;,</span></div><div class="line"><span class="attr">    watch:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">        studen:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">            handler:</span>  <span class="string">sayName</span> <span class="string">,</span></div><div class="line"><span class="attr">            deep:</span> <span class="literal">true</span>  <span class="string">&lt;-------</span></div><div class="line">        <span class="string">&#125;</span></div><div class="line">    <span class="string">&#125;,</span></div><div class="line"><span class="attr">    methods:</span> <span class="string">&#123;</span></div><div class="line">        <span class="string">sayName()</span> <span class="string">&#123;</span></div><div class="line">            <span class="string">console.log(this.studen)</span></div><div class="line">        <span class="string">&#125;</span></div><div class="line">    <span class="string">&#125;</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>触发监听执行多个方法</li>
+</ul>
+<p>使用数组可以设置多项，形式包括字符串、函数、对象</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    data: &#123;</div><div class="line">        name:  Joe</div><div class="line">    &#125;,</div><div class="line">    watch: &#123;</div><div class="line">        name: [</div><div class="line">             sayName1 ,</div><div class="line">            function(newVal, oldVal) &#123;</div><div class="line">                <span class="keyword">this</span>.sayName2()</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                handler:  sayName3 ,</div><div class="line">                immaediate: <span class="literal">true</span></div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;</div><div class="line">        sayName1() &#123;</div><div class="line">            <span class="built_in">console</span>.log( sayName1=<span class="function">=&gt;</span> , <span class="keyword">this</span>.name)</div><div class="line">        &#125;,</div><div class="line">        sayName2() &#123;</div><div class="line">            <span class="built_in">console</span>.log( sayName2=<span class="function">=&gt;</span> , <span class="keyword">this</span>.name)</div><div class="line">        &#125;,</div><div class="line">        sayName3() &#123;</div><div class="line">            <span class="built_in">console</span>.log( sayName3=<span class="function">=&gt;</span> , <span class="keyword">this</span>.name)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/CSV文件上传后台解析乱码问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1452,131 +1627,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/translucent-borders/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuchen Yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuchen's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/25/translucent-borders/" itemprop="url">
-                  透明边框
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T16:45:20+08:00">
-                2017-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
-</blockquote>
-<h2 id="目的">目的</h2>
-<p>我们想要给容器设置一个半透明的边框，能够让<code>body</code>的背景从半透明边框中透上来。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/25/translucent-borders/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1626,7 +1676,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1637,7 +1687,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1699,7 +1749,7 @@
         <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
