@@ -265,6 +265,252 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/16/js-args/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuchen Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuchen's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/06/16/js-args/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-16T20:54:45+08:00">
+                2020-06-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title：参数按值传递<br>
+tags：JavaScript</p>
+<hr>
+<h3 id="定义">定义</h3>
+<p>ECMAScript中所有函数的参数都是<strong>按值</strong>传递的。</p>
+<h4 id="案例一">案例一</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> value = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">v</span>) </span>&#123;</div><div class="line">	v = <span class="number">2</span>;</div><div class="line">	<span class="built_in">console</span>.log(v); <span class="comment">// 2</span></div><div class="line">&#125;</div><div class="line">test(value);</div><div class="line"><span class="built_in">console</span>.log(value); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>修改前：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>v</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>修改后：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>v</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="案例二">案例二</h4>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;</div><div class="line">    <span class="keyword">value</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"><span class="function">function <span class="title">test</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    o.<span class="keyword">value</span> = <span class="number">2</span>;</div><div class="line">    console.log(o.<span class="keyword">value</span>); <span class="comment">//2</span></div><div class="line">&#125;</div><div class="line">test(obj);</div><div class="line">console.log(obj.<span class="keyword">value</span>); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>修改前：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj,o</td>
+<td>指针地址</td>
+<td>{value: 1}</td>
+</tr>
+</tbody>
+</table>
+<p>修改后：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj,o</td>
+<td>指针地址</td>
+<td>{value: 2}</td>
+</tr>
+</tbody>
+</table>
+<h4 id="案例三">案例三</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;</div><div class="line">    <span class="attr">value</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    o = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(o); <span class="comment">//2</span></div><div class="line">&#125;</div><div class="line">test(obj);</div><div class="line"><span class="built_in">console</span>.log(obj.value); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>修改前：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj,o</td>
+<td>指针地址</td>
+<td>{value: 1}</td>
+</tr>
+</tbody>
+</table>
+<p>修改后：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>栈内存</th>
+<th>堆内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj,o</td>
+<td>指针地址</td>
+<td>{value: 1}</td>
+</tr>
+<tr>
+<td>o</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/vue-tricks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1502,131 +1748,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/multiple-borders/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuchen Yao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/me.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuchen's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/25/multiple-borders/" itemprop="url">
-                  多重边框
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T19:02:04+08:00">
-                2017-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center"><p>本例为《CSS揭秘》内容，仅用来练手学习。</p>
-</blockquote>
-<h2 id="box-shadow"><em>box-shadow</em></h2>
-<p>用来设置对象阴影。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/25/multiple-borders/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1676,7 +1797,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
