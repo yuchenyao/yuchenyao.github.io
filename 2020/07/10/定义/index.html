@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Promise," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -105,25 +105,37 @@
 
 
 
-<meta name="description" content="此文为《深入理解ES6》摘抄笔记
+<meta name="description" content="老知识点常学常新
 
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。">
+定义
+call()方法使用一个指定的 this值和单独给出的一个或多个参数来调用一个函数。
+语法
+function.call(thisArg, arg1, arg2, ...)
+
+thisArg可选，在 function 函数运行时使用的 this 值。请注意，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise(一)">
-<meta property="og:url" content="http://yoursite.com/2018/07/20/Promise-basis/index.html">
+<meta property="og:title" content="Function.prototype.call()">
+<meta property="og:url" content="http://yoursite.com/2020/07/10/定义/index.html">
 <meta property="og:site_name" content="Yuchen's Blog">
-<meta property="og:description" content="此文为《深入理解ES6》摘抄笔记
+<meta property="og:description" content="老知识点常学常新
 
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。">
-<meta property="og:updated_time" content="2018-07-23T06:10:51.000Z">
+定义
+call()方法使用一个指定的 this值和单独给出的一个或多个参数来调用一个函数。
+语法
+function.call(thisArg, arg1, arg2, ...)
+
+thisArg可选，在 function 函数运行时使用的 this 值。请注意，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自">
+<meta property="og:updated_time" content="2020-07-10T06:04:32.755Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise(一)">
-<meta name="twitter:description" content="此文为《深入理解ES6》摘抄笔记
+<meta name="twitter:title" content="Function.prototype.call()">
+<meta name="twitter:description" content="老知识点常学常新
 
-Promise 基础
-Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。">
+定义
+call()方法使用一个指定的 this值和单独给出的一个或多个参数来调用一个函数。
+语法
+function.call(thisArg, arg1, arg2, ...)
+
+thisArg可选，在 function 函数运行时使用的 this 值。请注意，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自">
 
 
 
@@ -151,13 +163,13 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/20/Promise-basis/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/10/定义/"/>
 
 
 
 
 
-  <title> Promise(一) | Yuchen's Blog </title>
+  <title> Function.prototype.call() | Yuchen's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +288,7 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/Promise-basis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/定义/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuchen Yao">
@@ -297,7 +309,7 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
             
             
               
-                Promise(一)
+                Function.prototype.call()
               
             
           </h1>
@@ -312,8 +324,8 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T09:30:12+08:00">
-                2018-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T14:04:32+08:00">
+                2020-07-10
               </time>
             
 
@@ -349,30 +361,28 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
 
       
         <blockquote>
-<p>此文为《深入理解ES6》摘抄笔记</p>
+<p>老知识点常学常新</p>
 </blockquote>
-<h2 id="promise-基础">Promise 基础</h2>
-<p>Promise 相当于异步操作结果的占位符，不会订阅一个事件，也不会传一个回调函数给目标函数，而是让函数返回一个Promise。</p>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// <span class="built_in">read</span>File 承诺在未来的某个时刻完成</div><div class="line"><span class="built_in">let</span> promise = <span class="built_in">read</span>File(<span class="string">"test.txt"</span>)</div></pre></td></tr></table></figure>
-<p><code>readFile()</code>不会立即开始读取文件，函数会先返回一个表示异步操作的Promise对象，未来对这个对象的操作取决于Promise的<strong>生命周期</strong>。</p>
-<h3 id="promise-生命周期">Promise 生命周期</h3>
-<p>在上面的示例中，<code>readFile()</code>返回Promise对象时，它变为<strong>pending</strong>状态，操作结束后，Promise可能会进入以下两个状态之一：</p>
+<h3 id="定义">定义</h3>
+<p><code>call()</code>方法使用一个指定的 <code>this</code>值和单独给出的一个或多个参数来调用一个函数。</p>
+<h3 id="语法">语法</h3>
+<p><code>function.call(thisArg, arg1, arg2, ...)</code></p>
 <ul>
-<li><strong>Fulfilled</strong>  Promise异步操作成功完成</li>
-<li><strong>Rejected</strong> Promise异步操作未能成功完成</li>
+<li><code>thisArg</code>可选，在 function 函数运行时使用的 this 值。请注意，this可能不是该方法看到的实际值：如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。</li>
+<li><code>arg1, arg2, ...</code>指定的参数列表</li>
 </ul>
-<h3 id="then-catch">then() &amp; catch()</h3>
-<p>所有Promise都有<code>then()</code>方法，它接受两个参数，一个是Promise状态变为<strong>fulfilled</strong>时调用的函数，一个是Promise状态变为<strong>rejected</strong>时调用的函数。</p>
-<p>Promise有一个<code>catch()</code>方法，相当于只传入拒绝处理程序的<code>then()</code>方法。</p>
-<h3 id="创建未完成的promise">创建未完成的Promise</h3>
-<p>Promise构造函数可以创建新的Promise，构造函数只接受一个参数：包含初始化Promise代码的执行器函数。</p>
-<p>执行器接受两个参数，分别是<code>resolve()</code>函数和<code>reject()</code>函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Promise'</span>);</div><div class="line">	resolve();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Resolved'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Hi'</span>);</div></pre></td></tr></table></figure>
-<p>输出为：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Promise</span></div><div class="line">Hi</div><div class="line">Resolved</div></pre></td></tr></table></figure>
-<p>Promise执行器会立即执行，所以首先打印Promise，虽然<code>then()</code>的调用位于<code>console.log('Hi');</code>之前，但是它并没有立即执行。因为完成处理程序的拒绝处理程序总是在执行器完成后被添加到任务队列的末尾。</p>
-<h3 id="创建已处理的promise">创建已处理的Promise</h3>
+<h3 id="使用">使用</h3>
+<p><code>call()</code>允许为不同的对象分配和调用属于一个对象的函数/方法。</p>
+<p><code>call()</code> 提供新的 this 值给当前调用的函数/方法。你可以使用 call 来实现继承：写一个方法，然后让另外一个新的对象来继承它（而不是在新对象中再写一次这个方法）。</p>
+<h3 id="示例">示例</h3>
+<ul>
+<li>使用call方法调用父构造函数</li>
+</ul>
+<p>在一个子构造函数中，你可以通过调用父构造函数的 call 方法来实现继承，类似于 Java 中的写法。下例中，使用 Food 和 Toy 构造函数创建的对象实例都会拥有在 Product 构造函数中添加的 name 属性和 price 属性,但 category 属性是在各自的构造函数中定义的。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span><span class="params">(name, price)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.price = price;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Food</span><span class="params">(name, price)</span> </span>&#123;</div><div class="line">  Product.call(<span class="keyword">this</span>, name, price);</div><div class="line">  <span class="keyword">this</span>.category = <span class="string">'food'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> cheese = <span class="keyword">new</span> Food(<span class="string">'feta'</span>, <span class="number">5</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用call方法调用匿名函数</li>
+</ul>
 
       
     </div>
@@ -394,12 +404,6 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Promise/" rel="tag"># Promise</a>
-          
-        </div>
-      
 
       
         
@@ -409,8 +413,8 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/19/everydayTest7-2/" rel="next" title="每日一测(三)">
-                <i class="fa fa-chevron-left"></i> 每日一测(三)
+              <a href="/2020/07/08/check-dag/" rel="next" title="由DAG图的环路检测学习Set和Map">
+                <i class="fa fa-chevron-left"></i> 由DAG图的环路检测学习Set和Map
               </a>
             
           </div>
@@ -419,8 +423,8 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/25/es6-array/" rel="prev" title="ANT-FORM">
-                ANT-FORM <i class="fa fa-chevron-right"></i>
+              <a href="/2020/07/16/scp2-deploy/" rel="prev" title="使用scp2快速进行前端局域网部署">
+                使用scp2快速进行前端局域网部署 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +563,7 @@ Promise 相当于异步操作结果的占位符，不会订阅一个事件，也
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#promise-基础"><span class="nav-number">1.</span> <span class="nav-text">Promise 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#promise-生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">Promise 生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#then-catch"><span class="nav-number">1.2.</span> <span class="nav-text">then() & catch()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建未完成的promise"><span class="nav-number">1.3.</span> <span class="nav-text">创建未完成的Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建已处理的promise"><span class="nav-number">1.4.</span> <span class="nav-text">创建已处理的Promise</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">4.</span> <span class="nav-text">示例</span></a></li></ol></div>
             
 
           </div>
